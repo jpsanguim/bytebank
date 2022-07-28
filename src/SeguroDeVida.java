@@ -1,8 +1,10 @@
 public class SeguroDeVida implements Tributavel {
 
+	//testagem de tributação
+	
     @Override
     public double getValorImposto() {
-        return 42;
+        return 100;
     }
     
 }

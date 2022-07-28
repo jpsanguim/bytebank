@@ -14,7 +14,7 @@ public abstract class Conta {
 
     public boolean saca(double valor) {
         if (this.saldo >= valor) {
-            this.saldo -= valor + 0.2;
+            this.saldo -= valor;
             return true;
         } else {
             return false;

@@ -1,16 +1,20 @@
-public class Conta {
+public abstract class Conta {
  
-    private double saldo;
+    protected double saldo;
     private int agencia, numero;
     private Cliente titular;
+    private static int total;
 
-    public void deposita(double valor) {
-        this.saldo += valor;
+    public Conta(int agencia, int numero) {
+        this.agencia = agencia;
+        this.numero = numero;
     }
+
+    public abstract void deposita(double valor);
 
     public boolean saca(double valor) {
         if (this.saldo >= valor) {
-            this.saldo -= valor;
+            this.saldo -= valor + 0.2;
             return true;
         } else {
             return false;
@@ -18,8 +22,8 @@ public class Conta {
     }
 
     public boolean transfere(double valor, Conta destino) {
-        if (this.saldo >= valor) {
-            this.saldo -= valor;
+    	if (this.saldo >= valor) {
+            this.saldo -= valor;    	
             destino.deposita(valor);
             return true;
         }
@@ -35,6 +39,10 @@ public class Conta {
     }
 
     public void setNumero(int numero) {
+        if (numero <= 0) {
+            System.out.println("Erro: o valor digitado não pode ser menor ou igual a zero!");
+            return;
+        }
         this.numero = numero;
     }
 
@@ -43,6 +51,10 @@ public class Conta {
     }
 
     public void setAgencia(int agencia) {
+        if (agencia <= 0) {
+            System.out.println("Erro: o valor digitado não pode ser menor ou igual a zero!");
+            return;
+        }
         this.agencia = agencia;
     }
 
@@ -54,4 +66,8 @@ public class Conta {
         this.titular = titular;
     }
 
+    public static int getTotal() {
+        return Conta.total;
+    }
+    
 }
